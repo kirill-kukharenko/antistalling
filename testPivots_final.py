@@ -14,6 +14,9 @@ samepoint = 0
 DanzSamepoint = 0
 
 class Degencounter:
+    '''
+    Counter for degenerate pivots.
+    '''
     def __init__(self):
         self.counter = 0
         self.lastPoint = np.zeros((10000))
@@ -25,6 +28,7 @@ class Degencounter:
         self.tol = tol
 
     def iterateCounter(self, curSolution):
+        'if the last iteration had the same vertex solution (up to the tolerance tol) increase counter'
         if np.allclose(curSolution, self.lastPoint, atol=self.tol, equal_nan=True):
             self.counter +=1
         self.lastPoint = np.array(curSolution)
